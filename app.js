@@ -4,13 +4,13 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const connection = require("./database/database");
 
-const categoriesController = require("./categories/CategoriesController");
-const articlesController = require("./articles/ArticlesController");
-const usersController = require("./users/UsersController");
+const categoriesController = require("./controllers/categories/CategoriesController");
+const articlesController = require("./controllers/articles/ArticlesController");
+const usersController = require("./controllers/users/UsersController");
 
-const Article = require("./articles/Article");
-const Category = require("./categories/Category");
-const User = require("./users/User");
+const Article = require("./controllers/articles/Article");
+const Category = require("./controllers/categories/Category");
+const User = require("./controllers/users/User");
 
 // View engine
 app.set('view engine','ejs');
@@ -96,7 +96,4 @@ app.get("/category/:slug",(req, res) => {
     })
 })
 
-
-app.listen(8080, () => {
-    console.log("O servidor está rodando!")
-})
+module.exports = app;

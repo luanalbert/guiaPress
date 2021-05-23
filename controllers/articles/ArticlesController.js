@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const Category = require("../categories/Category");
-const Article = require("./Article");
+const Article = require("../articles/Article");
 const slugify = require("slugify");
-const adminAuth = require("../middlewares/adminAuth");
+const adminAuth = require("../../middlewares/adminAuth");
 
 router.get("/admin/articles",(req, res)=>{
     Article.findAll({
