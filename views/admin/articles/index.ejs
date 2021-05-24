@@ -5,8 +5,8 @@
     <h2>Artigos</h2>
     <a class="btn btn-success" href="/admin/articles/new">Criar novo artigo</a>
     <hr>
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-bordered table-hover table-striped table-sm">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Título</th>
@@ -22,7 +22,7 @@
                  <td><%= article.title %></td>
                  <td><%= article.slug %></td>
                  <td><%= article.category.title %></td>
-                 <td>
+                 <th class="d-flex justify-content-center">
                  
                      <form method="POST" action="/articles/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">
                              <input type="hidden" name="id" value="<%= article.id %>">

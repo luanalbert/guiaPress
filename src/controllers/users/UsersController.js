@@ -77,5 +77,27 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
 })
 
+router.post("/user/delete", (req, res)=>{ //delete
+    var id = req.body.id;
+
+    if(id != undefined){ 
+        if (!isNaN(id)) {
+            //deletenado
+            User.destroy({
+                where:{
+                    id:id
+                }
+            }).then(()=>{
+                res.redirect('/admin/users');
+            });
+
+        }else{ //não for um numero
+            res.redirect("/admin/users");
+        }
+
+    }else{ //null
+        res.redirect("/admin/users");
+    }
+});
 
 module.exports = router;

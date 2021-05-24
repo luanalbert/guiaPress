@@ -18,11 +18,11 @@ app.set('view engine','ejs');
 // Sessions
 
 app.use(session({
-    secret: "qualquercoisa", cookie: { maxAge: 30000000 }
+    secret: "catDog", cookie: { maxAge: 30000000 }
 }))
 
 // Static
-app.use(express.static('public'));
+app.use(express.static('src/public'));
 
 //Body parser
 app.use(bodyParser.urlencoded({extended: false}));

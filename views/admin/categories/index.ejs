@@ -5,13 +5,13 @@
     <h2>Categorias</h2>
     <a class="btn btn-success" href="/admin/categories/new">Criar nova categoria</a>
     <hr>
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-bordered table-hover table-striped table-sm">
+        <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Título</th>
                 <th>Slug</th>
-                <th>Ações</th>
+                <th class="w-25">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                     <th><%= category.id %></th>
                     <th><%= category.title %></th>
                     <th><%= category.slug %></th>
-                    <th>
+                    <th class="d-flex justify-content-center">
                         <a href="/admin/categories/edit/<%= category.id %>" class="btn btn-warning">Editar</a>
                         
                         <form method="POST" action="/categories/delete" style="display: inline;" onsubmit="confirmarDelecao(event, this)">

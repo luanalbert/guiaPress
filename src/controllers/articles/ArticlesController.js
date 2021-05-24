@@ -9,7 +9,7 @@ router.get("/admin/articles",(req, res)=>{
     Article.findAll({
         include:[{model:Category, required: true}]
     }).then(articles =>{
-        res.render('admin/articles/index', {articles:articles})
+        res.render('./admin/articles/index', {articles:articles})
     });
 });
 
