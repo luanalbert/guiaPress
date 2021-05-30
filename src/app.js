@@ -1,25 +1,27 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
-const session = require("express-session");
+
+const routes = require('./routes'); 
+
 const connection = require("./database/database");
 
-const categoriesController = require("./controllers/categories/CategoriesController");
-const articlesController = require("./controllers/articles/ArticlesController");
-const usersController = require("./controllers/users/UsersController");
+const bodyParser = require("body-parser");
+const session = require("express-session");
 
-const Article = require("./controllers/articles/Article");
-const Category = require("./controllers/categories/Category");
-const User = require("./controllers/users/User");
+const Article = require("./model/Article");
+const Category = require("./model/Category");
+const User = require("./model/User");
 
 // View engine
 app.set('view engine','ejs');
 
 // Sessions
-
 app.use(session({
-    secret: "catDog", cookie: { maxAge: 30000000 }
-}))
+    secret: "catDog",
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 3600000 }  // 1 hour (in milliseconds)
+})); 
 
 // Static
 app.use(express.static('src/public'));
@@ -28,8 +30,10 @@ app.use(express.static('src/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// Database
+//routes
+app.use(routes);
 
+// Database connection
 connection
     .authenticate()
     .then(() => {
@@ -38,12 +42,7 @@ connection
         console.log(error);
     })
 
-
-app.use("/",categoriesController);    
-app.use("/",articlesController);
-app.use("/",usersController);
-
-
+    
 app.get("/", (req, res) => {
     Article.findAll({
         order:[
